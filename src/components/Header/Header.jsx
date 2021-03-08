@@ -9,7 +9,7 @@ export default function Header() {
                 <input className={classes.input} type='search'></input>
             </label>
             <label className={classes.inputText}> Choose language
-                <input className={classes.input} type='search'></input>
+                <input className={classes.input} type='select'></input>
             </label>
         </header>
     )
