@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
+import { Switch, Route } from 'react-router-dom'
+
+import Layout from "./components/Layout";
+import Main from "./pages/Main";
+import Country from "./pages/Country";
+
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://alinagaripova.github.io/json-api/countries.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("HTTP error " + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                data && setCountries(data);
+            })
+            .catch(error => console.error("country countries loader", error));
+    }, [])
+
+    return (
+        <div className="App">
+            <Layout>
+                <Switch>
+                    <Route path='/country/:id'>
+                        <Country countries={countries}/>
+                    </Route>
+                    <Route path='/'>
+                        <Main countries={countries}/>
+                    </Route>
+                </Switch>
+            </Layout>
+        </div>
+    );
 }
 
 export default App;
