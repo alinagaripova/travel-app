@@ -1,37 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Main() {
+import "./Main.scss";
 
-    const [cards, setCards] = useState([]);
-
-    useEffect(() => {
-        fetch(`https://alinagaripova.github.io/json-api/countries.json`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("HTTP error " + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                data && setCards(data);
-            })
-            .catch(error => console.error("country cards loader", error));
-    }, [])
-
+export default function Main({ countries }) {
     return (
-        <div className="container">
+        <div className="container cards-container">
             <div className="row justify-content-between flex-wrap">
-                {cards.map(item => {
+                {countries.map(item => {
                     return (
-                        <div className={"col-12 col-md-4 mb-3"}>
-                            <div className="card " >
-                                <img src={item.main_image} className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <h5 className="card-title">{item.country}</h5>
-                                    <p className="card-text">{item.capital}</p>
-                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                        <div className={"col-12 col-md-4 mb-4"}>
+                            <Link to={`/country/${item.id}`}>
+                                <div className="card" >
+                                    <div className="card__image">
+                                        <img src={item.main_image} className="card-img-top" alt="..." />
+                                    </div>
+                                    <div className="card-body">
+                                        <h4 className="card-title">{item.country}</h4>
+                                        <p className="card-text">{item.capital}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     )
                 })}
