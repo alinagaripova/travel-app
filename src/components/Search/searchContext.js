@@ -19,36 +19,36 @@ export const SearchProvider = ({ children }) => {
   const [capitals, setCapitals] = useState(searchState.capitals);
   const [isLoaded, setLoaded] = useState(searchState.isLoaded);
 
-  // function apiHandler() {
-  //   fetch(`https://restcountries.eu/rest/v2/name/${searchValue}?field=name;capital;flag;nativeName`, {
-  //     method: "GET",
-  //   })
-  //     .then((res) => res.json())
-  //     .then(
-  //       (result) => {
-  //         setCountry(result);
-  //         setLoaded(true);
-  //       },
-  //       (error) => {
-  //         console.log("error");
-  //         setLoaded(true);
-  //       }
-  //     );
-  //   fetch(`https://restcountries.eu/rest/v2/capital/${searchValue}?field=name;capital;flag;nativeName`, {
-  //     method: "GET",
-  //   })
-  //     .then((res) => res.json())
-  //     .then(
-  //       (result) => {
-  //         setCapitals(result);
-  //         setLoaded(true);
-  //       },
-  //       (error) => {
-  //         console.log("error");
-  //         setLoaded(true);
-  //       }
-  //     );
-  // }
+  function apiHandler() {
+    fetch(`https://restcountries.eu/rest/v2/name/${searchValue}?fields=name;capital`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setCountry(result);
+          setLoaded(true);
+        },
+        (error) => {
+          console.log("error");
+          setLoaded(true);
+        }
+      );
+    fetch(`https://restcountries.eu/rest/v2/capital/${searchValue}?fields=name;capital;flag;nativeName`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setCapitals(result);
+          setLoaded(true);
+        },
+        (error) => {
+          console.log("error");
+          setLoaded(true);
+        }
+      );
+  }
 
   return (
     <SearchContext.Provider
@@ -61,7 +61,7 @@ export const SearchProvider = ({ children }) => {
         setLoaded,
         searchValue,
         setSearchValue,
-        // apiHandler,
+        apiHandler,
       }}
     >
       {children}
