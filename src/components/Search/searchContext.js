@@ -16,7 +16,6 @@ export const useSearchContext = () => {
 export const SearchProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState(searchState.searchValue);
   const [countries, setCountry] = useState(searchState.countries);
-  // const [capitals, setCapitals] = useState(searchState.capitals);
   const [isLoaded, setLoaded] = useState(searchState.isLoaded);
 
   useEffect(() => {
@@ -40,8 +39,6 @@ export const SearchProvider = ({ children }) => {
       value={{
         countries,
         setCountry,
-        // capitals,
-        // setCapitals,
         isLoaded,
         setLoaded,
         searchValue,
