@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-//TODO: normal display
+import "./Country.scss";
+
 function Country({ countries }) {
     const [data, setData] = useState({});
     const { id } = useParams();
@@ -12,8 +13,16 @@ function Country({ countries }) {
     }, [countries]);
 
     return (
-        <div>
-            {data?.country}
+        <div className={"container country-data"}>
+            <h1 className={"country-data__header"}>{data?.country} ({data?.capital})</h1>
+            <div className={"country-data__body d-flex justify-content-around"}>
+                <div>
+                    <img src={data?.main_image} alt=""/>
+                </div>
+                <div className={"country-data__body_text px-3"}>
+                    {data?.description}
+                </div>
+            </div>
         </div>
     );
 }
