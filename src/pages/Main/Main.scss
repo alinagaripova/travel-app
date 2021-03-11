@@ -1,0 +1,17 @@
+.cards-container {
+  .card {
+    box-shadow: 0 0 10px #d1d2d2;
+    transition: box-shadow .3s ease;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 15px #919292;
+    }
+
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+}

@@ -44,11 +44,13 @@ export default function Search() {
               )
               .map((value, i) => {
                 return (
-                  <div className="option" style={{ width: 500 }} key={i} tabIndex="0">
-                    <div>{value.country}</div>
-                    <div>{`Столица ${value.capital}`}</div>
-                    <img src={value.main_image} style={{ width: 150, height: 100 }} />
-                  </div>
+                  <Link to={`/country/${i + 1}`}>
+                    <div className="option" style={{ width: 500 }} key={i} tabIndex="0">
+                      <div>{value.country}</div>
+                      {/* <div>{`Столица ${value.capital}`}</div>
+                    <img src={value.main_image} style={{ width: 150, height: 100 }} /> */}
+                    </div>
+                  </Link>
                 );
               })}
           </div>
