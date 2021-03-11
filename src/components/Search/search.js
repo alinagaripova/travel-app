@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, withRouter, Redirect } from "react-router-dom";
 import { useSearchContext } from "./searchContext";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,142 +14,52 @@ import { Modal } from "@material-ui/core";
 
 export default function Search() {
   const searchCntx = useSearchContext();
-  // if (this.state.error) {
-  //   this.setState({
-  //     error: null,
-  //   });
-  //   return <Redirect to="/404" />;
-  // }
+  const wrapperRef = useRef(null);
+  const [display, setDisplay] = useState(false);
 
-  const useStyles = makeStyles((theme) => ({
-    typography: {
-      padding: theme.spacing(2),
-    },
-  }));
+  useEffect(() => {
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
 
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    // console.log(event.currentTarget);
-    // setAnchorEl(event.currentTarget);
-    setAnchorEl(event.target);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
-
-  function searchHandler(event) {
-    searchCntx.setSearchValue(event.target.value);
-    if (event.target.value.length > 2) {
-      handleClick(event);
-      setTimeout(() => {
-        console.log(searchCntx.searchValue);
-        searchCntx.apiHandler();
-        console.log(searchCntx.countries);
-        console.log(searchCntx.capitals);
-      }, 500);
+  const handleClickOutside = (event) => {
+    const { current: wrap } = wrapperRef;
+    if (wrap && !wrap.contains(event.target)) {
+      setDisplay(false);
     }
-  }
+  };
 
   return (
-    <div className="search-field">
-      <form className={"search-form"}>
+    <div style={{ width: 500 }} className="search-field">
+      <div ref={wrapperRef} className="flex-container flex-column pos-rel">
         <OutlinedInput
-          type="text"
-          placeholder="  Введите запрос"
-          className="search-input"
-          onChange={searchHandler}
-          variant="outlined"
-          autoFocus={true}
-        ></OutlinedInput>
-        {
-          /*
-        <Link
-        // to={`/search/${this.state.searchState}/1`} onClick={this.searchResultHandler.bind(this, "a")}
-        >
-         */ <button className="search-button">
-            Поиск{" "}
-          </button> /*
-        </Link> */
-        }
-      </form>
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        disableAutoFocus={true}
-        disableEnforceFocus={true}
-      >
-        {`Возможно вы искали:`}
-        <br />
-        {`Страны`}
-        <ul>
-          {searchCntx.countries.length > 0 ? (
-            searchCntx.countries.map((elem) => {
-              return <li>{elem.name}</li>;
-            })
-          ) : (
-            <div />
-          )}
-        </ul>
-
-        {"Столицы"}
-        <ul>
-          {searchCntx.capitals.length > 0 ? (
-            searchCntx.capitals.map((elem) => {
-              return <li>{elem.capital}</li>;
-            })
-          ) : (
-            <div />
-          )}
-        </ul>
-
-        {/* <Typography className={classes.typography}>The content of the Popover.</Typography> */}
-      </Popover>
-
-      <div className="search-result">
-        <p>{`Результаты поиска по запросу ${searchCntx.searchValue}`}</p>
-        {/* {this.state.films.map((film) => {
-          return (
-            <NavLink
-              className={"NavLink"}
-              // to={"/film/" + film.filmId}
-            >
-              <Searchresult
-                key={film.filmId}
-                nameRu={film.nameRu}
-                nameEn={film.nameEn}
-                rating={film.rating}
-                posterUrl={film.posterUrl}
-                year={film.year}
-                genre={film.genres}
-              />
-            </NavLink>
-          );
-        })} */}
-
-        {/* <NavLink
-          className={"NavLink"}
-          //   to={`/search/${this.state.searchState}/1`}
-          //   onClick={this.searchResultHandler.bind(this, "a")}
-        >{`Посмотреть все совпадения`}</NavLink> */}
+          style={{ width: 500 }}
+          id="auto"
+          onClick={() => setDisplay(!display)}
+          placeholder="Введите название страны или столицы"
+          value={searchCntx.searchValue}
+          onChange={(event) => searchCntx.setSearchValue(event.target.value)}
+        />
+        {display && (
+          <div className="autoContainer">
+            {searchCntx.countries
+              .filter(
+                ({ country, capital }) =>
+                  country.toLowerCase().indexOf(searchCntx.searchValue.toLowerCase()) > -1 ||
+                  capital.toLowerCase().indexOf(searchCntx.searchValue.toLowerCase()) > -1
+              )
+              .map((value, i) => {
+                return (
+                  <div className="option" style={{ width: 500 }} key={i} tabIndex="0">
+                    <span>{value.country}</span>
+                  </div>
+                );
+              })}
+          </div>
+        )}
       </div>
     </div>
   );
 }
-
-// export default withRouter(Search);

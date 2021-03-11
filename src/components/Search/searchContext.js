@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const searchState = {
   countries: [],
@@ -16,11 +16,11 @@ export const useSearchContext = () => {
 export const SearchProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState(searchState.searchValue);
   const [countries, setCountry] = useState(searchState.countries);
-  const [capitals, setCapitals] = useState(searchState.capitals);
+  // const [capitals, setCapitals] = useState(searchState.capitals);
   const [isLoaded, setLoaded] = useState(searchState.isLoaded);
 
-  function apiHandler() {
-    fetch(`https://restcountries.eu/rest/v2/name/${searchValue}?fields=name;capital`, {
+  useEffect(() => {
+    fetch(`https://alinagaripova.github.io/json-api/countries.json`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -34,34 +34,18 @@ export const SearchProvider = ({ children }) => {
           setLoaded(true);
         }
       );
-    fetch(`https://restcountries.eu/rest/v2/capital/${searchValue}?fields=name;capital;flag;nativeName`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setCapitals(result);
-          setLoaded(true);
-        },
-        (error) => {
-          console.log("error");
-          setLoaded(true);
-        }
-      );
-  }
-
+  }, []);
   return (
     <SearchContext.Provider
       value={{
         countries,
         setCountry,
-        capitals,
-        setCapitals,
+        // capitals,
+        // setCapitals,
         isLoaded,
         setLoaded,
         searchValue,
         setSearchValue,
-        apiHandler,
       }}
     >
       {children}
