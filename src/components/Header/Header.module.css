@@ -1,0 +1,37 @@
+.header{
+    width: 1200px;
+    background-color: #9FD7F6;
+    font-size: 16px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 150px;
+}
+
+.input{
+    margin-left: 20px;
+}
+
+.inputText::before{
+    content: ' ';
+    display: block;
+    position: relative;
+    top: 30px;
+    left: -35px;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}   
+
+.inputText:first-of-type:before{
+    background-image: url('https://w7.pngwing.com/pngs/974/566/png-transparent-google-flights-airline-ticket-hotel-travel-blue-angle-flight.png');
+}
+
+.inputText::before{
+    background-image: url('https://img2.freepng.ru/20181115/jij/kisspng-world-computer-icons-favicon-symbol-illustration-cross-channel-marketing-platform-experian-market-5bee2cd8a6c218.0954288615423357046831.jpg');
+}
