@@ -1,4 +1,5 @@
 $swidth: 60vw;
+$smaxwidth: 1100px;
 
 .search-field {
   display: flex;
@@ -8,6 +9,7 @@ $swidth: 60vw;
     width: $swidth;
     min-width: 500px;
     margin: 15px 0px;
+    max-width: $smaxwidth;
     border-radius: 5px;
   }
 
@@ -19,6 +21,7 @@ $swidth: 60vw;
     width: $swidth;
     position: absolute;
     z-index: 3;
+    max-width: $smaxwidth;
     background-color: rgba(250, 235, 215, 0.699);
   }
 
@@ -36,6 +39,7 @@ $swidth: 60vw;
       outline: none;
     }
     width: $swidth - 2vw;
+    max-width: $smaxwidth - 20px;
     display: flex;
     #search-flag {
       width: 70px;
