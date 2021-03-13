@@ -1,29 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import CountryMap from '../../components/CountryMap';
 
 import './Country.scss';
-
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-
-const CountryMap = () => {
-  return (
-    <MapContainer
-      style={{ width: '500px', height: '493px' }}
-      center={[51.505, -0.09]}
-      zoom={13}
-      scrollWheelZoom={false}>
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-    </MapContainer>
-  );
-};
 
 function Country({ countries }) {
   const [data, setData] = useState({});
