@@ -1,10 +1,13 @@
+import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 const searchState = {
   countries: [],
   capitals: [],
   isLoaded: false,
   searchValue: "",
+  countryId: 1,
 };
 
 const SearchContext = React.createContext();
@@ -17,6 +20,7 @@ export const SearchProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState(searchState.searchValue);
   const [countries, setCountry] = useState(searchState.countries);
   const [isLoaded, setLoaded] = useState(searchState.isLoaded);
+  const [countryId, setCountryId] = useState(searchState.countryId);
 
   useEffect(() => {
     fetch(`https://alinagaripova.github.io/json-api/countries.json`, {
@@ -34,6 +38,7 @@ export const SearchProvider = ({ children }) => {
         }
       );
   }, []);
+
   return (
     <SearchContext.Provider
       value={{
@@ -43,6 +48,8 @@ export const SearchProvider = ({ children }) => {
         setLoaded,
         searchValue,
         setSearchValue,
+        countryId,
+        setCountryId,
       }}
     >
       {children}
