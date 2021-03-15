@@ -1,4 +1,5 @@
 import LocalTime from "../../components/LocalTime/localTime";
+import Exchange from "../../components/Exchange-rates/exch-rates";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function Country({ countries }) {
         <div className={"country-data__body_text px-3"}>{data?.description}</div>
       </div>
       <LocalTime country={data} />
+      <Exchange country={data} />
     </div>
   );
 }
