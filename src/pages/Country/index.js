@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import "./Country.scss";
+import Gallery from "../../components/Gallery/gallery";
 
 function Country({ countries }) {
   const [data, setData] = useState({});
@@ -26,6 +27,7 @@ function Country({ countries }) {
       </div>
       <LocalTime country={data} />
       <Exchange country={data} />
+      <Gallery />
     </div>
   );
 }
