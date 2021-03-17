@@ -10,7 +10,6 @@ import "../../styles/common.scss";
 export default function Layout({ children }) {
   return (
     <>
-      <Header />
       <main>{children}</main>
       <Footer />
     </>
