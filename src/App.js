@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, HashRouter } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import Main from "./pages/Main";
@@ -27,18 +27,20 @@ function App() {
 
   return (
     <div className="App">
-      <Layout>
-        <SearchProvider>
-          <Switch>
-            <Route path="/country/:id">
-              <Country countries={countries} />
-            </Route>
-            <Route path="/">
-              <Main countries={countries} />
-            </Route>
-          </Switch>
-        </SearchProvider>
-      </Layout>
+      <HashRouter basename="/">
+        <Layout>
+          <SearchProvider>
+            <Switch>
+              <Route path="/country/:id">
+                <Country countries={countries} />
+              </Route>
+              <Route path="/">
+                <Main countries={countries} />
+              </Route>
+            </Switch>
+          </SearchProvider>
+        </Layout>
+      </HashRouter>
     </div>
   );
 }
