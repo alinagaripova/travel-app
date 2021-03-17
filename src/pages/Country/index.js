@@ -46,6 +46,14 @@ function Country({ countries }) {
         <LocalTime country={data} />
         <Exchange country={data} />
         <Gallery />
+        <iframe
+          width="750"
+          height="415"
+          src={`${data?.video}`}
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       </div>
     </>
   );

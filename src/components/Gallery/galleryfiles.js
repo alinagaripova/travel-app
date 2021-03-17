@@ -306,11 +306,9 @@ const galleryassets = [
         "https://kudapoedymedia.s3.eu-west-1.amazonaws.com/wp-content/uploads/2020/08/02150729/%D0%A5%D1%80%D0%B0%D0%BC%D1%8B-%D0%90%D0%B1%D1%83-%D0%A1%D0%B8%D0%BC%D0%B1%D0%B5%D0%BB-%D0%B2-%D0%95%D0%B3%D0%B8%D0%BF%D1%82%D0%B5-6-800x445.jpg",
     },
     {
-      description: "Сфинск",
-      original:
-        "https://static.wikia.nocookie.net/mythological-creation/images/d/dd/%D0%A1%D1%84%D0%B8%D0%BD%D0%BA%D1%81.jpg/revision/latest?cb=20180922124958&path-prefix=ru",
-      thumbnail:
-        "https://static.wikia.nocookie.net/mythological-creation/images/d/dd/%D0%A1%D1%84%D0%B8%D0%BD%D0%BA%D1%81.jpg/revision/latest?cb=20180922124958&path-prefix=ru",
+      description: "Египетский сфинкc",
+      original: "https://www.nakanikuly.ua/sites/default/files/sfinks.png",
+      thumbnail: "https://www.nakanikuly.ua/sites/default/files/sfinks.png",
     },
     {
       description: "Цветной каньон",
