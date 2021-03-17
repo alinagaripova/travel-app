@@ -1,14 +1,78 @@
 .country-data {
+  background-color: rgba(245, 222, 179, 0.651);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 130px;
+    height: 80px;
+    // object-fit: cover;
+  }
   &__body {
-    img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
-
+    margin: 50px 0;
+    background-color: rgba(255, 255, 255, 0.877);
     &_text {
-      text-align: center;
+      text-align: justify;
       margin: auto;
+      font-size: 18px;
     }
   }
+  &__header {
+    text-align: start;
+  }
+  &__h {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .country-data__head {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    height: 120px;
+    justify-content: space-around;
+  }
+}
+.h-cont {
+  display: flex;
+  align-items: center;
+  width: 20vw;
+  justify-content: space-around;
+}
+header {
+  background-color: rgba(255, 255, 255, 0.815);
+}
+
+.header-title {
+  font-size: 40px;
+  text-decoration: dotted;
+  font-family: "Times New Roman", Times, serif;
+  text-align: left;
+  p {
+    font-size: 20px;
+  }
+}
+
+.bg-cont {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.gallery-container {
+  img {
+    width: auto;
+    height: auto;
+  }
+  height: 70vh;
+}
+
+.country-map {
+  &__header {
+    width: 85%;
+  }
+}
+
+h2 {
+  margin-bottom: 18px;
 }

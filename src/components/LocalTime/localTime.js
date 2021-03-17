@@ -26,8 +26,7 @@ export default function LocalTime({ country }) {
     <div className="localtime-container">
       <div>Местое время</div>
       <div className="localtime-clock">{timer}</div>
-      <div className="localtime-clock">{weekday}</div>
-      <div className="localtime-clock">{date}</div>
+      <div className="localtime-clock">{(weekday, date)}</div>
     </div>
   );
 }
