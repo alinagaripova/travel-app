@@ -28,16 +28,16 @@ function App() {
   return (
     <div className="App">
       <Layout>
-        <Switch>
-          <Route path="/country/:id">
-            <Country countries={countries} />
-          </Route>
-          <Route path="/">
-            <SearchProvider>
+        <SearchProvider>
+          <Switch>
+            <Route path="/country/:id">
+              <Country countries={countries} />
+            </Route>
+            <Route path="/">
               <Main countries={countries} />
-            </SearchProvider>
-          </Route>
-        </Switch>
+            </Route>
+          </Switch>
+        </SearchProvider>
       </Layout>
     </div>
   );
